@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Exchange Data</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.4.1/socket.io.js"></script>
+</head>
+<body>
+    <h1>Exchange Data</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Pair</th>
+                <th>Exchange</th>
+                <th>Value</th>
+                <th>Timestamp</th>
+            </tr>
+        </thead>
+        <tbody id="exchange-data">
+        </tbody>
+    </table>
+
+    <script type="text/javascript">
+        var socket = io.connect('http://' + document.domain + ':' + location.port + '/current_data');
+
+        socket.on('exchange_data', function(data) {
+            var exchangeData = data.current_data;
+            var tableBody = document.getElementById('exchange-data');
+
+            // Clear the table body
+            while (tableBody.firstChild) {
+                tableBody.removeChild(tableBody.firstChild);
+            }
+
+            // Create an object to store the pairs and their exchange names
+            var pairsData = {};
+
+            // Iterate through the exchange data and populate the pairsData object
+            for (var i = 0; i < exchangeData.length; i++) {
+                var pair = exchangeData[i].pair;
+                var exchangeName = exchangeData[i].exchange_name;
+                var value = exchangeData[i].value;
+                var timestamp = exchangeData[i].timestamp;
+
+                if (!pairsData.hasOwnProperty(pair)) {
+                    pairsData[pair] = {
+                        exchanges: [exchangeName],
+                        values: [value],
+                        timestamps: [timestamp]
+                    };
+                } else {
+                    pairsData[pair].exchanges.push(exchangeName);
+                    pairsData[pair].values.push(value);
+                    pairsData[pair].timestamps.push(timestamp);
+                }
+            }
+
+            // Populate the table with new data
+            for (var pair in pairsData) {
+                if (pairsData.hasOwnProperty(pair)) {
+                    var exchanges = pairsData[pair].exchanges;
+                    var values = pairsData[pair].values;
+                    var timestamps = pairsData[pair].timestamps;
+                    var rowCount = Math.max(exchanges.length, values.length, timestamps.length);
+
+                    for (var rowIndex = 0; rowIndex < rowCount; rowIndex++) {
+                        var row = tableBody.insertRow(rowIndex);
+                        var pairCell = row.insertCell(0);
+                        var exchangeCell = row.insertCell(1);
+                        var valueCell = row.insertCell(2);
+                        var timestampCell = row.insertCell(3);
+
+                        pairCell.innerHTML = rowIndex === 0 ? pair : '';
+                        exchangeCell.innerHTML = exchanges[rowIndex] || '';
+                        valueCell.innerHTML = values[rowIndex] || '';
+                        timestampCell.innerHTML = timestamps[rowIndex] || '';
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
