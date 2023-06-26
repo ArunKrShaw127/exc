@@ -3,10 +3,18 @@ from flask_socketio import SocketIO, emit
 from datetime import datetime
 import requests
 import threading
+import os
 
-app = Flask(__name__, template_folder='/Users/alokshaw/ExchangeData/templates')
+app = Flask(__name__)
 app.config['SECRET_KEY'] = 'secret_key'
 socketio = SocketIO(app)
+
+# Get the absolute path of the current directory
+current_dir = os.path.abspath(os.path.dirname(__file__))
+
+# Set the template folder path based on the current system
+template_folder = os.path.join(current_dir, 'templates')
+app.template_folder = template_folder
 
 @app.route('/')
 def index():
