@@ -18,20 +18,57 @@ Exchange Data is a simple web application that provides a user-friendly interfac
 
 To set up the Exchange Data project locally, follow these steps:
 
-1. Clone the repository:
+Sure! Here are the steps for both Windows and macOS:
 
-   ```shell
+**Windows:**
+1. Open a command prompt or Git Bash.
+2. Clone the repository by running the following command:
+
+   git clone https://github.com/your-username/exchange-data.git
+   
+3. Navigate to the project directory:
+   
+   cd exchange-data
+   
+4. Create a virtual environment:
+   
+   python -m venv venv
+   
+5. Activate the virtual environment:
+   
+   venv\Scripts\activate
+   
+6. Install the required dependencies:
+   
+   pip install -r requirements.txt
+   
+
+**macOS:**
+1. Open a terminal.
+2. Clone the repository by running the following command:
+   
    git clone https://github.com/your-username/exchange-data.git
 
-1. Navigate to the project directory:
-    cd exchange-data
+3. Navigate to the project directory:
+   
+   cd exchange-data
+   
+4. Create a virtual environment:
+   
+   python3 -m venv venv
+   
+5. Activate the virtual environment:
+   
+   source venv/bin/activate
+   
+6. Install the required dependencies:
+   
+   pip install -r requirements.txt
+   
 
-2. Create and activate a virtual environment:
-    python3 -m venv venv
-    source venv/bin/activate
+These steps will clone the repository, navigate to the project directory, create and activate a virtual environment, and install the required dependencies. Make sure to replace `your-username` with your actual GitHub username in the repository URL.
 
-3. Install the required dependencies:
-    pip install -r requirements.txt
+Let me know if you need any further assistance!
 
 Usage
 To run the Exchange Data application, execute the following command:
