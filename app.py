@@ -118,9 +118,7 @@ def fetch_exchange_data():
         "XLMUSDT",
         "XLMINR",
         "XLMBTC",
-        "DOGEBTC",
-        "DOGEINR",
-        "DOGEUSDT"
+        "DOGEBTC"
     ]
 
     exchanges = [

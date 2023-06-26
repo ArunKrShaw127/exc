@@ -7,8 +7,7 @@ Exchange Data is a web application built using Python and Flask that allows user
 - [Project Description](#project-description)
 - [Installation](#installation)
 - [Usage](#usage)
-- [Contributing](#contributing)
-- [License](#license)
+
 
 ## Project Description
 
@@ -18,7 +17,7 @@ Exchange Data is a simple web application that provides a user-friendly interfac
 
 To set up the Exchange Data project locally, follow these steps:
 
-Sure! Here are the steps for both Windows and macOS:
+Here are the steps for both Windows and macOS:
 
 **Windows:**
 1. Open a command prompt or Git Bash.
